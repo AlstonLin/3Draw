@@ -1,87 +1,58 @@
-var main = function() {
+window.addEventListener('DOMContentLoaded', function(){
+  // get the canvas DOM element
+  var canvas = document.getElementById('renderCanvas');
 
-  var CANVAS = document.getElementById("your_canvas");
+  // load the 3D engine
+  var engine = new BABYLON.Engine(canvas, true);
 
-  CANVAS.width = window.innerWidth;
-  CANVAS.height = window.innerHeight;
+  // createScene function that creates and return the scene
+  var createScene = function(){
+      // create a basic BJS Scene object
+      var scene = new BABYLON.Scene(engine);
 
-  /*========================= GET WEBGL CONTEXT ========================= */
-  var GL;
-  try {
-    GL = CANVAS.getContext("experimental-webgl", {antialias: false});
-  } catch (e) {
-    alert("Your browser is not WebGL Compatible")
-    return false;
+      // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
+      var camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-10), scene);
+
+      // target the camera to scene origin
+      camera.setTarget(BABYLON.Vector3.Zero());
+
+      // attach the camera to the canvas
+      camera.attachControl(canvas, false);
+
+      // create a basic light, aiming 0,1,0 - meaning, to the sky
+      var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
+
+      // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
+      var sphere = new BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
+
+      // move the sphere upward 1/2 of its height
+      sphere.position.y = 1;
+
+      // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
+      var ground = new BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
+
+      // return the created scene
+      return scene;
   }
- /*========================= SHADERS ========================= */
-  var vertexSource = "\n\
-    attribute vec2 position; //the position of the point\n\
-    void main(void) { //pre-built function\n\
-    gl_Position = vec4(position, 0., 1.); //0. is the z, and 1 is w\n\
-    }";
 
+  // call the createScene function
+  var scene = createScene();
 
-  var fragmentSource = "\n\
-    precision mediump float;\n\
-    \n\
-    \n\
-    \n\
-    void main(void) {\n\
-    gl_FragColor = vec4(0.,0.,0., 1.); //black color\n\
-    }";
+  // run the render loop
+  engine.runRenderLoop(function(){
+      scene.render();
+  });
 
-  var getShader = function(source, type, typeString) {
-    var shader = GL.createShader(type);
-    GL.shaderSource(shader, source);
-    GL.compileShader(shader);
-    if (!GL.getShaderParameter(shader, GL.COMPILE_STATUS)) {
-      alert("ERROR IN " + typeString + " SHADER : " + GL.getShaderInfoLog(shader));
-      return false;
-    }
-    return shader;
+  // the canvas/window resize event handler
+  window.addEventListener('resize', function(){
+      engine.resize();
+  });
+});
+
+function getCursorPosition(){
+  return {
+    x: 0,
+    y: 0,
+    z: 0
   };
-
-  var shaderVertex = getShader(vertexSource, GL.VERTEX_SHADER, "VERTEX");
-  var shaderFragment = getShader(fragmentSource, GL.FRAGMENT_SHADER, "FRAGMENT");
-  var SHADER_PROGRAM = GL.createProgram();
-  GL.attachShader(SHADER_PROGRAM, shaderVertex);
-  GL.attachShader(SHADER_PROGRAM, shaderFragment);
-  GL.linkProgram(SHADER_PROGRAM);
-  var _position = GL.getAttribLocation(SHADER_PROGRAM, "position");
-  GL.enableVertexAttribArray(_position);
-  GL.useProgram(SHADER_PROGRAM);
-
-  /*========================= THE TRIANGLE ========================= */
-  //POINTS :
-  var triangle_vertex = [
-    -1,-1, //first summit -> bottom left of the viewport
-    1,-1, //bottom right of the viewport
-    1,1,  //top right of the viewport
-  ];
-
-  var TRIANGLE_VERTEX = GL.createBuffer ();
-  GL.bindBuffer(GL.ARRAY_BUFFER, TRIANGLE_VERTEX);
-  GL.bufferData(GL.ARRAY_BUFFER,
-  new Float32Array(triangle_vertex),
-  GL.STATIC_DRAW);
-
-    //FACES :
-  var triangle_faces = [0,1,2];
-  var TRIANGLE_FACES = GL.createBuffer ();
-  GL.bindBuffer(GL.ELEMENT_ARRAY_BUFFER, TRIANGLE_FACES);
-  GL.bufferData(GL.ELEMENT_ARRAY_BUFFER, new Uint16Array(triangle_faces), GL.STATIC_DRAW);
-
-
-
-  /*========================= DRAWING ========================= */
-  GL.clearColor(0.0, 0.0, 0.0, 0.0);
-
-  var animate = function() {
-    GL.viewport(0.0, 0.0, CANVAS.width, CANVAS.height);
-    GL.clear(GL.COLOR_BUFFER_BIT);
-    GL.flush();
-    window.requestAnimationFrame(animate);
-  };
-
-  animate();
-};
+}
