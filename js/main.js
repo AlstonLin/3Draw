@@ -1,7 +1,7 @@
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-var ObjectId = require('mongodb').ObjectId;
-var url = 'mongodb://d3draw.cloudapp.net';
+//var MongoClient = require('mongodb').MongoClient;
+//var assert = require('assert');
+//var ObjectId = require('mongodb').ObjectId;
+//var url = 'mongodb://d3draw.cloudapp.net';
 var count = 0;
 var scene, camera;
 var cubeCounter = 0;
@@ -10,7 +10,7 @@ var cubeCounter = 0;
 window.addEventListener('DOMContentLoaded', function(){
   //Increment counter
   count++;
-  Console.log(count);
+  console.log(count);
   // get the canvas DOM element
   var canvas = document.getElementById('renderCanvas');
 
@@ -66,13 +66,13 @@ window.addEventListener('DOMContentLoaded', function(){
   scene = createScene();
 
   //Insert scene into database
-  Console.log("About to insert.");
-  MongoClient.connect(url, function(err, db) {
+  console.log("About to insert.");
+  /*MongoClient.connect(url, function(err, db) {
     assert.equal(null, err);
     insertScene(db, function() {
       db.close();
     }, scene);
-  });
+  });*/
 
   // run the render loop
   engine.runRenderLoop(function(){
@@ -103,6 +103,7 @@ function getCursorPosition(){
   };
 }
 
+/*
 function insertScene(db, callback, scene) {
   db.collection('scenes').insertOne({
       "scene" : scene,
@@ -142,3 +143,4 @@ var scene = function getScene(db, callback, id) {
    });
 
 }
+*/
