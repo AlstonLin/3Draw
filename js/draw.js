@@ -6,44 +6,16 @@ var drawLine = 0;
 var linkLinex;
 var linkLiney;
 var linkLinez;
-var r = 0;
-var g = 0;
-var b = 0;
 const DEFAULT_SIZE = 1;
 const DELAY = 10;
-
 function drawCube(){
   var cube = BABYLON.Mesh.CreateBox('cube' + cubeCounter, DEFAULT_SIZE, scene);
   window.setTimeout(function(){
     deepClonePosition(cube, cursor);
   }, DELAY);
   cubeCounter++;
+  updateServer();
   return cube;
-}
-
-function changeColour(obj){
-  if(obj != null) {
-    var material1 = new BABYLON.StandardMaterial("texture1", scene);
-    material1.wireframe = true;
-    material1.emissiveColor = new BABYLON.Color3(r / 255.0, g / 255.0, b / 255.0);
-    obj.material = material1;
-  }
-}
-
-function highlight(obj){
-  if(obj != null){
-     var material1 = new BABYLON.StandardMaterial("texture1", scene);
-      material1.wireframe = true;
-      obj.material = material1;
-  }
-}
-
-function unhighlight(obj){
-  if(obj != null){
-    var material1 = new BABYLON.StandardMaterial("texture1", scene);
-      material1.wireframe = false;
-      obj.material = material1;
-  }
 }
 
 function drawSphere(){
@@ -52,6 +24,7 @@ function drawSphere(){
     deepClonePosition(sphere, cursor);
   }, DELAY);
   sphereCounter++;
+  updateServer();
   return sphere;
 }
 
@@ -61,6 +34,7 @@ function drawCylinder(){
     deepClonePosition(cylinder, cursor);
   }, DELAY);
   cylinderCounter++;
+  updateServer();
   return cylinder;
 }
 
@@ -70,17 +44,19 @@ function drawCone(){
     deepClonePosition(cone, cursor);
   }, DELAY);
   coneCounter++;
+  updateServer();
   return cone;
 }
 
 function drawLine(){
-
+  updateServer();
 }
 
 function deepClonePosition(a, b){
   a.position.x = b.position.x;
   a.position.y = b.position.y;
-  a.position.z = b.position.z;
+  a.position.x = b.position.x;
+  updateServer();
 }
 
 function drawLinkLines(){
@@ -118,5 +94,5 @@ function drawLinkLines(){
         new BABYLON.Vector3(x0, 0, 0),
     ], scene);
   linkLinez.color = new BABYLON.Color3(0, 0, 1);
-  
+  updateServer();
 }
