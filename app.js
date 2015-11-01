@@ -20,7 +20,7 @@ io.on('connection', function(socket){
 
 io.on('client id', function(data){
   sockets[data.socket] = data.roomId;
-  updateClients(data.roomId, collections.findOne({data.id}));
+  updateClients(data.roomId, collections.findOne({roomId: data.roomId}));
 });
 
 io.on('client update', function(data){
