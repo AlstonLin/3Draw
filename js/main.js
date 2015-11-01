@@ -5,6 +5,7 @@ var scene, camera, cursor;
 //var ObjectId = require('mongodb').ObjectId;
 //var url = 'mongodb://d3draw.cloudapp.net';
 var count = 0;
+<<<<<<< HEAD
 var cubeCounter = 0;
 var linkLinex;
 var linkLiney;
@@ -48,6 +49,9 @@ function drawLinkLines(){
   
 }
   
+=======
+var id;
+>>>>>>> origin/master
 
 window.addEventListener('DOMContentLoaded', function(){
   //Increment counter
