@@ -1,15 +1,26 @@
 var scene, camera, cursor, socket, engine, canvas;
 var count = 0;
 var id = 0;
-/**
+
 socket = io();
 
 io.on('server update', function(data){
-  scene = data;
+  if(scene == null){
+    if(data == null) {
+      scene = createScene();
+    } else { 
+      scene = data;
+    }
+    engine.runRenderLoop(function(){
+        scene.render();
+    });
+  }else{
+    scene = data;
+  }
 });
 
 socket.emit('client id', {socket: socket, roomId: id});
-**/
+
 $("#submit").click(function(){
   id = $("#id").val();
 });
@@ -28,15 +39,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
   //Get ID
   console.log("ID: " + id);
-  var currentScene = getScene(id);
-  if(currentScene == null) {
-    scene = createScene();
-  } else { 
-    scene = currentScene;
-  }
-  engine.runRenderLoop(function(){
-      scene.render();
-  });
 
   // the canvas/window resize event handler
   window.addEventListener('resize', function(){
@@ -87,16 +89,12 @@ function createScene(){
   return scene;
 }
 
-function getScene(){
-
-}
-
 function addSceneToServer(){
-  //socket.emit('client insert', {roomId: id, scene: scene});
+  socket.emit('client insert', {roomId: id, scene: scene});
 }
 
 function updateServer(){
-  //socket.emit('client update', {roomId: id, scene: scene});
+  socket.emit('client update', {roomId: id, scene: scene});
 }
 
 
