@@ -69,3 +69,9 @@ function updateClients(roomId, scene){
   }
 }
 //No line 71
+
+
+
+
+
+
