@@ -25,7 +25,9 @@ window.addEventListener('DOMContentLoaded', function(){
 
   //Get ID
   console.log("ID: " + id);
-  
+
+  var mongojs = require(['mongojs'])
+  var db = mongojs(require['mongodb://d3draw.cloudapp.net'], ['mycollection'])
   //Return all scenes
   var scenes = db.collections('scenes').find().fetch();
   //Get scene by id
