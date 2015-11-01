@@ -3,7 +3,7 @@ var count = 0;
 var id = 0;
 
 function setupMongo(){
-  var mongodb = require(['mongodb']);
+  var mongodb = require('mongodb');
   var MongoClient = mongodb.MongoClient;
   var url = 'mongodb://d3draw.cloudapp.net/scenes';
   MongoClient.connect(url, function (err, db) {
@@ -18,7 +18,7 @@ function setupMongo(){
   });
 }
 
-setupMongo();
+//setupMongo();
 
 $("#submit").click(function(){
   id = $("#id").val();
@@ -39,13 +39,14 @@ window.addEventListener('DOMContentLoaded', function(){
 
   //Get ID
   console.log("ID: " + id);
-
+  /*
   //Return all scenes
   var scenes = collection.find().fetch();
   //Get scene by id
   var currentScene = collection.find({"_id" : id}).fetch();
 
   if(currentScene == []) {
+    */
   // createScene function that creates and return the scene
     var createScene = function(){
       // create a basic BJS Scene object
@@ -138,7 +139,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
     // call the createScene function
     scene = createScene();
-
+    /*
     //Insert scene into database
     console.log("About to insert.");
     MongoClient.connect(url, function(err, db) {
@@ -147,12 +148,13 @@ window.addEventListener('DOMContentLoaded', function(){
         db.close();
       }, scene);
     });
+
   }
 
   else { 
     scene = currentScene;
   }
-
+  */
   // run the render loop
   engine.runRenderLoop(function(){
       scene.render();
