@@ -6,6 +6,7 @@ var scene, camera, cursor;
 //var url = 'mongodb://d3draw.cloudapp.net';
 var count = 0;
 var cubeCounter = 0;
+var id;
 
 window.addEventListener('DOMContentLoaded', function(){
   //Increment counter
@@ -17,7 +18,8 @@ window.addEventListener('DOMContentLoaded', function(){
   // load the 3D engine
   var engine = new BABYLON.Engine(canvas, true);
 
-  
+  //Get ID
+  console.log("ID: " + id);
 
   // createScene function that creates and return the scene
   var createScene = function(){
@@ -116,6 +118,9 @@ window.addEventListener('keydown', function(event) {
   }
 }, false);
 
+$("#submit").click(function(){
+  id = $("#id").val();
+});
 
 
 /*
