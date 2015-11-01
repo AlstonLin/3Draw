@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', function(){
     var light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0,1,0), scene);
 
     // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
-    var sphere = BABYLON.Mesh.CreateSphere('sphere', 16, 2, scene);
+    var sphere = BABYLON.Mesh.CreateSphere('sphere', 10, 1, scene);
 
     // return the created scene
     return scene;
