@@ -65,10 +65,8 @@ function updateScene(roomId, scene){
 }
 
 function updateClients(roomId, scene){
-    io.broadcast('server update', {roomId: roomId, scene: scene});
-  }
+  io.broadcast('server update', {roomId: roomId, scene: scene});
 }
-//No line 71
 
 
 
