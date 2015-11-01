@@ -1,5 +1,6 @@
 var select = false;
 var popup = false;
+var drawingLine = false;
 var obj;
 
 
@@ -25,6 +26,10 @@ window.addEventListener("click", function () {
     popup = false;
     popPanel(obj);
   }
+
+  if(drawingLine == true){
+    drawLine();
+  }
   
 });
 
@@ -42,29 +47,36 @@ $(document).ready(function(){
   $("#select").click(function(){
     if(select == true){
       select = false;
+      drawingLine = false;
     }else{
       select = true;
+      drawingLine = false;
     }
   });
   $("#cube").click(function(){
     drawCube();
-    select = false
+    select = false;
+    drawingLine = false;
   });
   $("#sphere").click(function(){
     drawSphere();
-    select = false
+    select = false;
+    drawingLine = false;
   });
   $("#cylinder").click(function(){
     drawCylinder();
-    select = false
+    select = false;
+    drawingLine = false;
   });
   $("#cone").click(function(){
     drawCone();
-    select = false
+    select = false;
+    drawingLine = false;
   });
   $("#line").click(function(){
     drawLine();
-    select = false
+    select = false;
+    drawingLine = true;
   });
 });
 

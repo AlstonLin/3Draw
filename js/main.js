@@ -26,9 +26,9 @@ window.addEventListener('DOMContentLoaded', function(){
   console.log("ID: " + id);
   
   //Return all scenes
-  var scenes = collection.find().fetch();
+  //var scenes = collection.find().fetch();
   //Get scene by id
-  var currentScene = collection.find({"_id" : id}).fetch();
+  //var currentScene = collection.find({"_id" : id}).fetch();
 
   if(currentScene == []) {
   // createScene function that creates and return the scene
