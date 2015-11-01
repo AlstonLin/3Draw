@@ -18,14 +18,14 @@ window.addEventListener('DOMContentLoaded', function(){
   var engine = new BABYLON.Engine(canvas, true);
 
   
-
+    
   // createScene function that creates and return the scene
   var createScene = function(){
     // create a basic BJS Scene object
     scene = new BABYLON.Scene(engine);
 
     // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-    camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 0, 10), scene);
+    camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 0, 5), scene);
 
     // target the camera to scene origin
     camera.setTarget(BABYLON.Vector3.Zero());
@@ -42,20 +42,23 @@ window.addEventListener('DOMContentLoaded', function(){
 
     // create x,y,z axis
     var linex = new BABYLON.Mesh.CreateLines("lines1", [
-        new BABYLON.Vector3(10000, 0, 0),
-        new BABYLON.Vector3(-10000, 0, 0),
+        new BABYLON.Vector3(100000, 0, 0),
+        new BABYLON.Vector3(-100000, 0, 0),
     ], scene);
     
+    linex.color = new BABYLON.Color3(1, 0, 0);
 
     var liney = new BABYLON.Mesh.CreateLines("line2", [
-        new BABYLON.Vector3(0, 10000, 0),
-        new BABYLON.Vector3(0, -10000, 0),
+        new BABYLON.Vector3(0, 100000, 0),
+        new BABYLON.Vector3(0, -100000, 0),
     ], scene);
+    liney.color = new BABYLON.Color3(0, 1, 0);
 
     var linez = new BABYLON.Mesh.CreateLines("line3", [
-        new BABYLON.Vector3(0, 0, 10000),
-        new BABYLON.Vector3(0, 0, -10000),
+        new BABYLON.Vector3(0, 0, 100000),
+        new BABYLON.Vector3(0, 0, -100000),
     ], scene);
+    linez.color = new BABYLON.Color3(0, 0, 1);
 
     // return the created scene
     return scene;
