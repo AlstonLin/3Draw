@@ -1,34 +1,70 @@
-var select = true;
-var drag = false;
-window.addEventListener("mousedown", function(){
-  drag = false;
-});
+var select = false;
+var popup = false;
+var obj;
+
+
 window.addEventListener("mousemove", function(){
     flag = 1;
 }, false);
 window.addEventListener("mouseup", function(){
-    if(select && !drag){
-        //TODO: INSERT CODE TO SELECT A SHAPE
+    if(select){
+        
     }
 }, false);
+
+//When click event is raised
+window.addEventListener("click", function () {
+  if(select == true){
+    var pickResult = scene.pick(scene.pointerX, scene.pointerY);
+    if (pickResult.hit){
+      obj = pickResult.pickedMesh;
+      popup=true;
+      popPanel(obj);
+    }
+  }else{
+    popup = false;
+    popPanel(obj);
+  }
+  
+});
+
+function popPanel(obj){
+  if(popup == true){
+    highlight(obj);
+    $('#pop').popover('show');
+  }else{
+    unhighlight(obj);
+    $('#pop').popover('hide');
+  }
+}
+
 $(document).ready(function(){
   $("#select").click(function(){
-    select = true;
+    if(select == true){
+      select = false;
+    }else{
+      select = true;
+    }
   });
   $("#cube").click(function(){
     drawCube();
+    select = false
   });
   $("#sphere").click(function(){
     drawSphere();
+    select = false
   });
   $("#cylinder").click(function(){
     drawCylinder();
+    select = false
   });
   $("#cone").click(function(){
     drawCone();
+    select = false
   });
   $("#line").click(function(){
     drawLine();
+    select = false
   });
 });
 

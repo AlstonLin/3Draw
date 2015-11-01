@@ -14,6 +14,8 @@ window.addEventListener('DOMContentLoaded', function(){
   //Increment counter
   count++;
   console.log(count);
+  $('[data-toggle="popover"]').popover();
+
   // get the canvas DOM element
   var canvas = document.getElementById('renderCanvas');
 

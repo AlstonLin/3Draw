@@ -17,6 +17,22 @@ function drawCube(){
   return cube;
 }
 
+function highlight(obj){
+  if(obj != null){
+     var material1 = new BABYLON.StandardMaterial("texture1", scene);
+      material1.wireframe = true;
+      obj.material = material1;
+  }
+}
+
+function unhighlight(obj){
+  if(obj != null){
+    var material1 = new BABYLON.StandardMaterial("texture1", scene);
+      material1.wireframe = false;
+      obj.material = material1;
+  }
+}
+
 function drawSphere(){
   var sphere = BABYLON.Mesh.CreateSphere('sphere' + sphereCounter, 10, DEFAULT_SIZE, scene);
   window.setTimeout(function(){
@@ -51,7 +67,7 @@ function drawLine(){
 function deepClonePosition(a, b){
   a.position.x = b.position.x;
   a.position.y = b.position.y;
-  a.position.x = b.position.x;
+  a.position.z = b.position.z;
 }
 
 function drawLinkLines(){
