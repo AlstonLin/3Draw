@@ -1,8 +1,4 @@
 var scene, camera, cursor;
-var MongoClient = require('mongodb').MongoClient;
-var assert = require('assert');
-var ObjectId = require('mongodb').ObjectId;
-var url = 'mongodb://d3draw.cloudapp.net';
 var count = 0;
 var id = 0;
 
