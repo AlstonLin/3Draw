@@ -2,7 +2,7 @@ var scene, camera, cursor, socket, engine, canvas;
 var count = 0;
 var id = 0;
 
-socket = io();
+socket = io('http://localhost');
 
 io.on('server update', function(data){
   if(scene == null){
