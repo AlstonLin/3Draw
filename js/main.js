@@ -39,8 +39,6 @@ window.addEventListener('DOMContentLoaded', function(){
     materialCursor.diffuseColor = new BABYLON.Color3(0, 0, 0);
     cursor = BABYLON.Mesh.CreateSphere("sphere", 10.0, 0.1, scene);
     cursor.material = materialCursor;
-    // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
-    var sphere = BABYLON.Mesh.CreateSphere('sphere', 16, 2, scene);
 
     // create x,y,z axis
     var linex = new BABYLON.Mesh.CreateLines("lines1", [
