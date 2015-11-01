@@ -3,11 +3,10 @@ var sockets = [];
 var socketMap = [];
 var MongoClient = require('mongodb').MongoClient
   , assert = require('assert');
-
 var app = require('express')();
 var http = require('http').Server(app);
-
 var io = require('socket.io')(http);
+
 http.listen(3000, function(){
   console.log('listening on *:3000');
 });
@@ -35,7 +34,7 @@ io.on('client insert', function(data){
 function setupMongo(){
   var mongodb = require('mongodb');
   var MongoClient = mongodb.MongoClient;
-  var url = 'mongodb://localhost/BostonHacksApp';
+  var url = 'mongodb://localhost';
   MongoClient.connect(url, function (err, db) {
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err);
