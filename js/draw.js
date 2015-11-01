@@ -6,8 +6,12 @@ var drawLine = 0;
 var linkLinex;
 var linkLiney;
 var linkLinez;
+var r = 0;
+var g = 0;
+var b = 0;
 const DEFAULT_SIZE = 1;
 const DELAY = 10;
+
 function drawCube(){
   var cube = BABYLON.Mesh.CreateBox('cube' + cubeCounter, DEFAULT_SIZE, scene);
   window.setTimeout(function(){
@@ -15,6 +19,15 @@ function drawCube(){
   }, DELAY);
   cubeCounter++;
   return cube;
+}
+
+function changeColour(obj){
+  if(obj != null) {
+    var material1 = new BABYLON.StandardMaterial("texture1", scene);
+    material1.wireframe = true;
+    material1.emissiveColor = new BABYLON.Color3(r / 255.0, g / 255.0, b / 255.0);
+    obj.material = material1;
+  }
 }
 
 function highlight(obj){

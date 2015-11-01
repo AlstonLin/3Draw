@@ -1,7 +1,14 @@
 var select = false;
 var popup = false;
+var update = false;
 var obj;
 
+$("#colours").click(function(){
+  r = $("#r").val();
+  g = $("#g").val();
+  b = $("#b").val();
+  update = true;
+});
 
 window.addEventListener("mousemove", function(){
     flag = 1;
@@ -21,7 +28,12 @@ window.addEventListener("click", function () {
       popup=true;
       popPanel(obj);
     }
-  }else{
+  }
+  else if(update == true) {
+    changeColour(obj);
+    update = false;
+  }
+  else{
     popup = false;
     popPanel(obj);
   }
@@ -101,3 +113,4 @@ window.addEventListener('keydown', function(event) {
     break;
   }
 }, false);
+
