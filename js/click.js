@@ -16,15 +16,18 @@ $(document).ready(function(){
     select = true;
   });
   $("#cube").click(function(){
-    createCube();
+    drawCube();
   });
   $("#sphere").click(function(){
-    createSphere();
+    drawSphere();
   });
   $("#cylinder").click(function(){
-
+    drawCylinder();
+  });
+  $("#cone").click(function(){
+    drawCone();
   });
   $("#line").click(function(){
-
+    drawLine();
   });
 });
