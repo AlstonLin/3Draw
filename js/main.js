@@ -3,7 +3,7 @@ var count = 0;
 var id = 0;
 
 function setupMongo(){
-  var mongodb = require('mongodb');
+  var mongodb = require(['mongodb']);
   var MongoClient = mongodb.MongoClient;
   var url = 'mongodb://d3draw.cloudapp.net/scenes';
   MongoClient.connect(url, function (err, db) {
