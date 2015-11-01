@@ -5,7 +5,6 @@ var scene, camera, cursor;
 //var ObjectId = require('mongodb').ObjectId;
 //var url = 'mongodb://d3draw.cloudapp.net';
 var count = 0;
-var cubeCounter = 0;
 
 window.addEventListener('DOMContentLoaded', function(){
   //Increment counter
