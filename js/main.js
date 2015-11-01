@@ -9,6 +9,8 @@ window.addEventListener('DOMContentLoaded', function(){
   // load the 3D engine
   var engine = new BABYLON.Engine(canvas, true);
 
+  
+
   // createScene function that creates and return the scene
   var createScene = function(){
     // create a basic BJS Scene object
@@ -29,9 +31,28 @@ window.addEventListener('DOMContentLoaded', function(){
     // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
     var sphere = BABYLON.Mesh.CreateSphere('sphere', 16, 2, scene);
 
+    // create x,y,z axis
+    var linex = new BABYLON.Mesh.CreateLines("lines1", [
+        new BABYLON.Vector3(10000, 0, 0),
+        new BABYLON.Vector3(-10000, 0, 0),
+    ], scene);
+    
+
+    var liney = new BABYLON.Mesh.CreateLines("line2", [
+        new BABYLON.Vector3(0, 10000, 0),
+        new BABYLON.Vector3(0, -10000, 0),
+    ], scene);
+
+    var linez = new BABYLON.Mesh.CreateLines("line3", [
+        new BABYLON.Vector3(0, 0, 10000),
+        new BABYLON.Vector3(0, 0, -10000),
+    ], scene);
+
     // return the created scene
     return scene;
   }
+
+  
 
   // call the createScene function
   scene = createScene();
