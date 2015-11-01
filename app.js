@@ -1,8 +1,8 @@
 var collection;
 var sockets = [];
 var socketMap = [];
-var MongoClient = require('mongodb').MongoClient
-  , assert = require('assert');
+var mongodb = require('mongodb');
+var assert = require('assert');
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -32,7 +32,6 @@ io.on('client insert', function(data){
 
 
 function setupMongo(){
-  var mongodb = require('mongodb');
   var MongoClient = mongodb.MongoClient;
   var url = 'mongodb://localhost';
   MongoClient.connect(url, function (err, db) {
