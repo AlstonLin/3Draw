@@ -1,7 +1,7 @@
-var scene, camera, cursor, socket;
+var scene, camera, cursor, socket, engine, canvas;
 var count = 0;
 var id = 0;
-
+/**
 socket = io();
 
 io.on('server update', function(data){
@@ -9,7 +9,7 @@ io.on('server update', function(data){
 });
 
 socket.emit('client id', {socket: socket, roomId: id});
-
+**/
 $("#submit").click(function(){
   id = $("#id").val();
 });
@@ -21,10 +21,10 @@ window.addEventListener('DOMContentLoaded', function(){
   count++;
   console.log(count);
   // get the canvas DOM element
-  var canvas = document.getElementById('renderCanvas');
+  canvas = document.getElementById('renderCanvas');
 
   // load the 3D engine;
-  var engine = new BABYLON.Engine(canvas, true);
+  engine = new BABYLON.Engine(canvas, true);
 
   //Get ID
   console.log("ID: " + id);
@@ -87,25 +87,16 @@ function createScene(){
   return scene;
 }
 
-function insertScene(db, callback, scene) {
-  db.collection('scenes').insertOne({
-      "scene" : scene,
-      "_id" : count
-    }, 
-    function(err, result) {
-      assert.equal(err, null);
-      console.log("Scene " + count + " saved.");
-      callback(result);
-    });
+function getScene(){
+
 }
 
-
 function addSceneToServer(){
-  socket.emit('client insert', {roomId: id, scene: scene});
+  //socket.emit('client insert', {roomId: id, scene: scene});
 }
 
 function updateServer(){
-  socket.emit('client update', {roomId: id, scene: scene});
+  //socket.emit('client update', {roomId: id, scene: scene});
 }
 
 
