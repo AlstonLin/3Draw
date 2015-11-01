@@ -6,6 +6,48 @@ var scene, camera, cursor;
 //var url = 'mongodb://d3draw.cloudapp.net';
 var count = 0;
 var cubeCounter = 0;
+var linkLinex;
+var linkLiney;
+var linkLinez;
+
+function drawLinkLines(){
+  // lines
+  var x0,y0,z0;
+  x0 = cursor.position.x;
+  y0 = cursor.position.y;
+  z0 = cursor.position.z;
+
+  if(linkLinex != null){
+    linkLinex.dispose();
+  }
+  if(linkLiney != null){
+    linkLiney.dispose();
+  }
+  if(linkLinez != null){
+    linkLinez.dispose();
+  }
+
+
+  linkLinex = new BABYLON.Mesh.CreateLines("lline1", [
+        new BABYLON.Vector3(x0, y0, z0),
+        new BABYLON.Vector3(x0, 0, z0),
+    ], scene);
+  linkLinex.color = new BABYLON.Color3(1, 0, 0);
+
+  linkLiney = new BABYLON.Mesh.CreateLines("lline2", [
+        new BABYLON.Vector3(x0, 0, z0),
+        new BABYLON.Vector3(0, 0, z0),
+    ], scene);
+  linkLiney.color = new BABYLON.Color3(0, 1, 0);
+
+  linkLinez = new BABYLON.Mesh.CreateLines("lline13", [
+        new BABYLON.Vector3(x0, 0, z0),
+        new BABYLON.Vector3(x0, 0, 0),
+    ], scene);
+  linkLinez.color = new BABYLON.Color3(0, 0, 1);
+  
+}
+  
 
 window.addEventListener('DOMContentLoaded', function(){
   //Increment counter
@@ -60,6 +102,9 @@ window.addEventListener('DOMContentLoaded', function(){
     ], scene);
     linez.color = new BABYLON.Color3(0, 0, 1);
 
+    drawLinkLines();
+
+
     // return the created scene
     return scene;
   }
@@ -93,30 +138,35 @@ window.addEventListener('keydown', function(event) {
   switch (event.keyCode) {
     case 87: //w -> +y
       cursor.position.y += 0.1;
+      drawLinkLines();
     break;
 
     case 65: //a -> +x
-      cursor.position.x += 0.1
+      cursor.position.x += 0.1;
+      drawLinkLines();
     break;
 
     case 83: //s -> -y
       cursor.position.y -= 0.1;
+      drawLinkLines();
     break;
 
     case 68: //d -> -x
       cursor.position.x -= 0.1;
+      drawLinkLines();
     break;
 
     case 81: //q -> +z
       cursor.position.z += 0.1;
+      drawLinkLines();
     break;
 
     case 69: //e -> -z
       cursor.position.z -= 0.1;
+      drawLinkLines();
     break;
   }
 }, false);
-
 
 
 /*
