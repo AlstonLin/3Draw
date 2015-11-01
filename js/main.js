@@ -40,7 +40,7 @@ window.addEventListener('DOMContentLoaded', function(){
   //Get ID
   console.log("ID: " + id);
   }
-});
+);
 
 window.addEventListener('resize', function(){
       engine.resize();
