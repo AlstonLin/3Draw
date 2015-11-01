@@ -1,10 +1,24 @@
-var scene, camera, cursor;
-//var MongoClient = require('mongodb').MongoClient;
-//var assert = require('assert');
-//var ObjectId = require('mongodb').ObjectId;
-//var url = 'mongodb://d3draw.cloudapp.net';
+var scene, camera, cursor, collection;
 var count = 0;
 var id = 0;
+
+function setupMongo(){
+  var mongodb = require('mongodb');
+  var MongoClient = mongodb.MongoClient;
+  var url = 'mongodb://localhost:27017/scenes';
+  MongoClient.connect(url, function (err, db) {
+    if (err) {
+      console.log('Unable to connect to the mongoDB server. Error:', err);
+    } else {
+      //HURRAY!! We are connected. :)
+      console.log('Connection established to', url);
+      collection = db.collection('scenes');
+      db.close();
+    }
+  });
+}
+
+setupMongo();
 
 $("#submit").click(function(){
   id = $("#id").val();
@@ -26,12 +40,10 @@ window.addEventListener('DOMContentLoaded', function(){
   //Get ID
   console.log("ID: " + id);
 
-  var mongojs = require(['mongojs'])
-  var db = mongojs(require['mongodb://d3draw.cloudapp.net'], ['mycollection'])
   //Return all scenes
-  var scenes = db.collections('scenes').find().fetch();
+  var scenes = collection.find().fetch();
   //Get scene by id
-  var currentScene = db.collections('scenes').find({"_id" : id}).fetch();
+  var currentScene = collection.find({"_id" : id}).fetch();
 
   if(currentScene == []) {
   // createScene function that creates and return the scene
