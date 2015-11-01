@@ -1,10 +1,10 @@
+
+var scene, camera, cursor;
 //var MongoClient = require('mongodb').MongoClient;
 //var assert = require('assert');
 //var ObjectId = require('mongodb').ObjectId;
 //var url = 'mongodb://d3draw.cloudapp.net';
 var count = 0;
-var scene, camera;
-var cubeCounter = 0;
 var cubeCounter = 0;
 
 window.addEventListener('DOMContentLoaded', function(){
@@ -35,7 +35,10 @@ window.addEventListener('DOMContentLoaded', function(){
 
     // create a basic light, aiming 0,1,0 - meaning, to the sky
     var light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0,1,0), scene);
-
+    var materialCursor = new BABYLON.StandardMaterial("cursorTexture", scene);
+    materialCursor.diffuseColor = new BABYLON.Color3(0, 0, 0);
+    cursor = BABYLON.Mesh.CreateSphere("sphere", 10.0, 0.1, scene);
+    cursor.material = materialCursor;
     // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
     var sphere = BABYLON.Mesh.CreateSphere('sphere', 16, 2, scene);
 
@@ -85,23 +88,35 @@ window.addEventListener('DOMContentLoaded', function(){
   });
 });
 
-function getCursorPosition(){
-  const DIR_MULTIPLIER = 3;
+window.addEventListener('keydown', function(event) {
+  switch (event.keyCode) {
+    case 87: //w -> +y
+      cursor.position.y += 0.1;
+    break;
 
-  var cameraX = camera.position.x;
-  var cameraY = camera.position.y;
-  var cameraZ = camera.position.z;
+    case 65: //a -> +x
+      cursor.position.x += 0.1
+    break;
 
-  var dirX = Math.sin(camera.rotation.x);
-  var dirY = Math.sin(camera.rotation.y);
-  var dirZ = Math.sin(camera.rotation.z);
+    case 83: //s -> -y
+      cursor.position.y -= 0.1;
+    break;
 
-  return {
-    x: cameraX + DIR_MULTIPLIER * dirX,
-    y: cameraY + DIR_MULTIPLIER * dirY,
-    z: cameraZ + DIR_MULTIPLIER * dirZ
-  };
-}
+    case 68: //d -> -x
+      cursor.position.x -= 0.1;
+    break;
+
+    case 81: //q -> +z
+      cursor.position.z += 0.1;
+    break;
+
+    case 69: //e -> -z
+      cursor.position.z -= 0.1;
+    break;
+  }
+}, false);
+
+
 
 /*
 function insertScene(db, callback, scene) {
