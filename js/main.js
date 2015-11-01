@@ -10,6 +10,8 @@ $("#submit").click(function(){
   id = $("#id").val();
 });
 
+//added comment to force sync
+
 
 window.addEventListener('DOMContentLoaded', function(){
   //Increment counter
