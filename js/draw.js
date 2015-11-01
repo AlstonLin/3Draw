@@ -23,7 +23,7 @@ function drawCube(){
 function highlight(obj){
   if(obj != null){
      var material1 = new BABYLON.StandardMaterial("texture1", scene);
-      material1.wireframe = tr                ue;
+      material1.wireframe = true;
       obj.material = material1;
   }
 }
