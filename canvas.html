@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="css/styles.css">
+	<link href = "css/bootstrap.min.css" rel = "stylesheet">
+	<link href = "css/jquery-ui.css" rel = "stylesheet">
+	<link href="css/jquery.jspanel.css" rel="stylesheet">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8"/>
+    <title>D3Draw</title>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top" style="height:5%;">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand page-scroll" href="#page-top">
+					<h1 style="margin-top:-5%;">D3Draw</h1>
+				</a>
+			</div>
+		</nav>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top" style="height:5%;">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand page-scroll" href="#page-top">
+				<img src="Image/Drawing.png" class="img-responsive" alt="Logo" width="55" height="40">
+			</a>
+		</div>
+		<div class="container">
+			<ul class="nav navbar-nav navbar-right">
+				<div class="btn-group" role="group" aria-label="...">
+					<div class="btn-group">
+						<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Menu <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Logout</a></li>
+						</ul>
+					</div>
+				</div>
+			</ul>
+		</div>
+		<div>
+			<div class="btn-group-vertical" role="group" aria-label="...">
+				<button id="select" type="button" class="btn btn-default">Select</button>
+				<button id="cube" type="button" class="btn btn-default">Cube</button>
+				<button id="sphere" type="button" class="btn btn-default">Sphere</button>
+				<button id="line" type="button" class="btn btn-default">Line</button>
+				<button id="cone" type="button" class="btn btn-default">Cone</button>
+				<button id="cylinder" type="button" class="btn btn-default">Cylinder</button>
+				<div class="btn-group" role="group">
+					<ul class="dropdown-menu">
+						<li><a href="#">Dropdown link</a></li>
+						<li><a href="#">Dropdown link</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<canvas id="renderCanvas" ></canvas>
+
+</body>
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/jquery.jspanel.js"></script>
+<script src="js/require.js"></script>
+<script src="js/babylon.js"></script>
+<script src="js/main.js"></script>
+<script src="js/draw.js"></script>
+</html>

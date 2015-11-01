@@ -5,6 +5,7 @@ var scene, camera, cursor;
 //var ObjectId = require('mongodb').ObjectId;
 //var url = 'mongodb://d3draw.cloudapp.net';
 var count = 0;
+var id;
 
 window.addEventListener('DOMContentLoaded', function(){
   //Increment counter
@@ -16,8 +17,8 @@ window.addEventListener('DOMContentLoaded', function(){
   // load the 3D engine
   var engine = new BABYLON.Engine(canvas, true);
 
-  
-    
+  //Get ID
+  console.log("ID: " + id);
   // createScene function that creates and return the scene
   var createScene = function(){
     // create a basic BJS Scene object
@@ -116,6 +117,9 @@ window.addEventListener('keydown', function(event) {
   }
 }, false);
 
+$("#submit").click(function(){
+  id = $("#id").val();
+});
 
 
 /*
