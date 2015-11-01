@@ -39,9 +39,10 @@ window.addEventListener('DOMContentLoaded', function(){
 
   //Get ID
   console.log("ID: " + id);
+  }
+});
 
-  // the canvas/window resize event handler
-  window.addEventListener('resize', function(){
+window.addEventListener('resize', function(){
       engine.resize();
   });
 });

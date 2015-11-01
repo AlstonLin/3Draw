@@ -6,6 +6,8 @@ var drawLine = 0;
 var linkLinex;
 var linkLiney;
 var linkLinez;
+var drawnLine;
+var startx, starty, startz;
 const DEFAULT_SIZE = 1;
 const DELAY = 10;
 function drawCube(){
@@ -16,6 +18,22 @@ function drawCube(){
   cubeCounter++;
   updateServer();
   return cube;
+}
+
+function highlight(obj){
+  if(obj != null){
+     var material1 = new BABYLON.StandardMaterial("texture1", scene);
+      material1.wireframe = tr                ue;
+      obj.material = material1;
+  }
+}
+
+function unhighlight(obj){
+  if(obj != null){
+    var material1 = new BABYLON.StandardMaterial("texture1", scene);
+      material1.wireframe = false;
+      obj.material = material1;
+  }
 }
 
 function drawSphere(){
@@ -49,6 +67,19 @@ function drawCone(){
 }
 
 function drawLine(){
+  if(drawLine == 0){
+    startx = cursor.position.x;
+    starty = cursor.position.y;
+    startz = cursor.position.z;
+  }
+  if(drawnLine != null){
+    drawnLine.dispose();
+  }
+  
+  drawnLine = new BABYLON.Mesh.CreateLines("line" + lineCounter, [
+        new BABYLON.Vector3(startx, starty, startz),
+        new BABYLON.Vector3(cursor.position.x, cursor.position.y, cursor.position.z),
+    ], scene);
   updateServer();
 }
 
