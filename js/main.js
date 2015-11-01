@@ -25,13 +25,13 @@ window.addEventListener('DOMContentLoaded', function(){
     scene = new BABYLON.Scene(engine);
 
     // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-    var camera = new BABYLON.ArcRotateCamera("Camera", Math.PI, Math.PI / 8, 50, BABYLON.Vector3.Zero(), scene);
+    camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 0, 10), scene);
 
     // target the camera to scene origin
     camera.setTarget(BABYLON.Vector3.Zero());
 
     // attach the camera to the canvas
-    camera.attachControl(canvas, true);
+    camera.attachControl(canvas, false);
 
     // create a basic light, aiming 0,1,0 - meaning, to the sky
     var light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0,1,0), scene);
