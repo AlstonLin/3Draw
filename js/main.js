@@ -5,7 +5,7 @@ var id = 0;
 function setupMongo(){
   var mongodb = require('mongodb');
   var MongoClient = mongodb.MongoClient;
-  var url = 'mongodb://localhost:27017/scenes';
+  var url = 'mongodb://d3draw.cloudapp.net/scenes';
   MongoClient.connect(url, function (err, db) {
     if (err) {
       console.log('Unable to connect to the mongoDB server. Error:', err);
