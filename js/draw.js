@@ -20,11 +20,10 @@ function drawCube(){
   return cube;
 }
 
-<<<<<<< HEAD
 function highlight(obj){
   if(obj != null){
      var material1 = new BABYLON.StandardMaterial("texture1", scene);
-      material1.wireframe = tr                ue;
+      material1.wireframe = true;
       obj.material = material1;
   }
 }
@@ -37,8 +36,6 @@ function unhighlight(obj){
   }
 }
 
-=======
->>>>>>> origin/master
 function drawSphere(){
   var sphere = BABYLON.Mesh.CreateSphere('sphere' + sphereCounter, 10, DEFAULT_SIZE, scene);
   window.setTimeout(function(){
@@ -70,7 +67,7 @@ function drawCone(){
 }
 
 function drawLine(){
-<<<<<<< HEAD
+
   if(drawLine == 0){
     startx = cursor.position.x;
     starty = cursor.position.y;
@@ -80,19 +77,23 @@ function drawLine(){
     drawnLine.dispose();
   }
   
-  drawnLine = new BABYLON.Mesh.CreateLines("line" + lineCounter, [
+  drawnLine = new BABYLON.Mesh.CreateLines("line", [
         new BABYLON.Vector3(startx, starty, startz),
         new BABYLON.Vector3(cursor.position.x, cursor.position.y, cursor.position.z),
     ], scene);
-=======
   updateServer();
->>>>>>> origin/master
+  drawnLine.color = new BABYLON.Color3(1, 0, 0);
+  drawnLine++;
+}
+
+function stopDrawLine(){
+  drawLine = 0;
 }
 
 function deepClonePosition(a, b){
   a.position.x = b.position.x;
   a.position.y = b.position.y;
-  a.position.x = b.position.x;
+  a.position.z = b.position.z;
   updateServer();
 }
 

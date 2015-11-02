@@ -1,6 +1,7 @@
 var scene, camera, cursor, socket, engine, canvas;
 var count = 0;
 var id = 0;
+var freeCam = true;
 /**
 socket = io();
 
@@ -28,7 +29,6 @@ window.addEventListener('DOMContentLoaded', function(){
 
   //Get ID
   console.log("ID: " + id);
-<<<<<<< HEAD
   
   //Return all scenes
   //var scenes = collection.find().fetch();
@@ -79,7 +79,8 @@ window.addEventListener('DOMContentLoaded', function(){
 
       // return the created scene
       return scene;
-    }
+    };
+  }
 
   // createScene function that creates and return the scene
   var createScene = function(){
@@ -119,20 +120,18 @@ window.addEventListener('DOMContentLoaded', function(){
         new BABYLON.Vector3(0, 0, -10000),
     ], scene);
 
-    drawLinkLines();
 
 
     // return the created scene
     return scene;
-  }
+  };
+
 
     // call the createScene function
-=======
   var currentScene = getScene(id);
   if(currentScene == null) {
->>>>>>> origin/master
     scene = createScene();
-  } else { 
+  } else {
     scene = currentScene;
   }
   engine.runRenderLoop(function(){
@@ -145,47 +144,34 @@ window.addEventListener('DOMContentLoaded', function(){
   });
 });
 
+function switchView(){
+  var cx, cy, cz;
+  cx = camera.position.x;
+  cy = camera.position.y;
+  cz = camera.position.z;
 
-function createScene(){
-  // create a basic BJS Scene object
-  scene = new BABYLON.Scene(engine);
+  if(freeCam){
+  camera.dispose();
+       //  Create an ArcRotateCamera aimed at 0,0,0, with no alpha, beta or radius, so be careful.  It will look broken.
+   camera = new BABYLON.ArcRotateCamera("camera", 0, 0, 0, BABYLON.Vector3.Zero(), scene);
+   // Quick, let's use the setPosition() method... with a common Vector3 position, to make our camera better aimed.
+   camera.setPosition(new BABYLON.Vector3(cx, cy, cz));
+   // First, set the scene's activeCamera... to be YOUR camera.
+   scene.activeCamera = camera;
+// Then attach the activeCamera to the canvas.
+   scene.activeCamera.attachControl(canvas);
+    freeCam = false;
+  }else{
+    camera.dispose();
+    camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(cx, cy, cz), scene);
+    // target the camera to scene origin
+    camera.setTarget(BABYLON.Vector3.Zero());
 
-  // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-  camera = new BABYLON.FreeCamera('camera', new BABYLON.Vector3(0, 0, 10), scene);
-
-  // target the camera to scene origin
-  camera.setTarget(BABYLON.Vector3.Zero());
-
-  // attach the camera to the canvas
-  camera.attachControl(canvas, false);
-
-  // create a basic light, aiming 0,1,0 - meaning, to the sky
-  var light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0,1,0), scene);
-  var materialCursor = new BABYLON.StandardMaterial("cursorTexture", scene);
-  materialCursor.diffuseColor = new BABYLON.Color3(0, 0, 0);
-  cursor = BABYLON.Mesh.CreateSphere("sphere", 10.0, 0.1, scene);
-  cursor.material = materialCursor;
-
-  // create x,y,z axis
-  var linex = new BABYLON.Mesh.CreateLines("lines1", [
-      new BABYLON.Vector3(10000, 0, 0),
-      new BABYLON.Vector3(-10000, 0, 0),
-  ], scene);
-  
-
-  var liney = new BABYLON.Mesh.CreateLines("line2", [
-      new BABYLON.Vector3(0, 10000, 0),
-      new BABYLON.Vector3(0, -10000, 0),
-  ], scene);
-
-  var linez = new BABYLON.Mesh.CreateLines("line3", [
-      new BABYLON.Vector3(0, 0, 10000),
-      new BABYLON.Vector3(0, 0, -10000),
-  ], scene);
-
-  drawLinkLines();
-  // return the created scene
-  return scene;
+    // attach the camera to the canvas
+    camera.attachControl(canvas, false);
+    freeCam = true;
+  }
+  console.log("switch Cam");
 }
 
 function getScene(){
