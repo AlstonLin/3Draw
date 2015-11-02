@@ -8,7 +8,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 http.listen(3000, function(){
-  console.log('listening on *:3000');
+  console.log('listening on *3000');
 });
 
 io.on('connection', function(socket){
@@ -20,7 +20,7 @@ io.on('connection', function(socket){
 
 io.on('client id', function(data){
   sockets[data.socket] = data.roomId;
-  data
+  updateClients(data.roomId, collections.findOne({roomId: data.roomId}));
 });
 
 io.on('client update', function(data){
@@ -65,9 +65,11 @@ function updateScene(roomId, scene){
 }
 
 function updateClients(roomId, scene){
-  for (var socket in sockets){
-    if (sockets[socket] == roomId){
-        io.broadcast('server update', scene);
-    }
-  }
+  io.broadcast('server update', {roomId: roomId, scene: scene});
 }
+
+
+
+
+
+

@@ -67,7 +67,6 @@ function drawCone(){
 }
 
 function drawLine(){
-
   if(drawLine == 0){
     startx = cursor.position.x;
     starty = cursor.position.y;
@@ -84,10 +83,7 @@ function drawLine(){
   updateServer();
   drawnLine.color = new BABYLON.Color3(1, 0, 0);
   drawnLine++;
-}
-
-function stopDrawLine(){
-  drawLine = 0;
+  updateServer();
 }
 
 function deepClonePosition(a, b){

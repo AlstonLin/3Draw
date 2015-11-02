@@ -2,7 +2,6 @@ var select = false;
 var popup = false;
 var drawingLine = false;
 var update = false;
-
 var obj;
 
 $("#colours").click(function(){
@@ -179,37 +178,37 @@ window.addEventListener('keydown', function(event) {
     }
   }else{
     switch (event.keyCode) {
-    case 87: //w -> +y
-      cursor.position.y += 0.1;
-      drawLinkLines();
-    break;
+      case 87: //w -> +y
+        cursor.position.y += 0.1;
+        drawLinkLines();
+      break;
 
-    case 65: //a -> +x
-      cursor.position.x += 0.1;
-      drawLinkLines();
-    break;
+      case 65: //a -> +x
+        cursor.position.x += 0.1;
+        drawLinkLines();
+      break;
 
-    case 83: //s -> -y
-      cursor.position.y -= 0.1;
-      drawLinkLines();
-    break;
+      case 83: //s -> -y
+        cursor.position.y -= 0.1;
+        drawLinkLines();
+      break;
 
-    case 68: //d -> -x
-      cursor.position.x -= 0.1;
-      drawLinkLines();
-    break;
+      case 68: //d -> -x
+        cursor.position.x -= 0.1;
+        drawLinkLines();
+      break;
 
-    case 81: //q -> +z
-      cursor.position.z += 0.1;
-      drawLinkLines();
-    break;
+      case 81: //q -> +z
+        cursor.position.z += 0.1;
+        drawLinkLines();
+      break;
 
-    case 69: //e -> -z
-      cursor.position.z -= 0.1;
-      drawLinkLines();
-    break;
+      case 69: //e -> -z
+        cursor.position.z -= 0.1;
+        drawLinkLines();
+      break;
+    }
   }
-  }
-  
+  updateServer();
 }, false);
 
